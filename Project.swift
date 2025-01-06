@@ -60,7 +60,7 @@ let widgets = Target.target(
 	deploymentTargets: .iOS("17.0"),
 	infoPlist: infoPlist,
 	sources: [
-		"Widgets"
+		"Widgets/**"
 	]
 )
 
