@@ -59,9 +59,8 @@ let widgets = Target.target(
 	bundleId: "ru.maksim.widgets",
 	deploymentTargets: .iOS("17.0"),
 	infoPlist: infoPlist,
-	sources: [
-		"Widgets/**"
-	]
+	sources: ["Widgets/Sources/**"],
+	resources: ["Widgets/Resources/**"]
 )
 
 let project = Project(

@@ -1,0 +1,15 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "Hello, world!" : {
+
+    },
+    "Изменить виджет" : {
+
+    },
+    "Сохранить" : {
+
+    }
+  },
+  "version" : "1.0"
+}
