@@ -10,9 +10,9 @@ import SwiftUI
 struct WidgetsPageView: View {
 	var body: some View {
 		TabView {
-			SmallWidget()
-			MediumWidget()
-			LargeWidget()
+			WidgetView(type: .small)
+			WidgetView(type: .medium)
+			WidgetView(type: .large)
 		}
 		.tabViewStyle(.page)
 		.indexViewStyle(.page(backgroundDisplayMode: .always))
