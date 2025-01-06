@@ -54,7 +54,7 @@ let infoPlist: InfoPlist = .extendingDefault(with: [
 
 let widgets = Target.target(
 	name: "Widgets",
-	destinations: [.iPhone],
+	destinations: .iOS,
 	product: .app,
 	bundleId: "ru.maksim.widgets",
 	deploymentTargets: .iOS("17.0"),
@@ -66,6 +66,10 @@ let widgets = Target.target(
 
 let project = Project(
 	name: "Widgets",
+	options: .options(
+		defaultKnownRegions: ["ru", "en"],
+		developmentRegion: "ru"
+	),
 	targets: [
 		widgets
 	],
