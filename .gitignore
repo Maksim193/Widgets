@@ -1,0 +1,16 @@
+Widgets/.DS_Store
+Widgets.xcodeproj
+Widgets.xcworkspace
+Derived
+.DS_Store
+.swiftpm
+.build
+.cache
+App/Podfile.lock
+*.xcuserstate
+metadata
+screenshots
+Deliverfile
+IDEWorkspaceChecks.plist
+*.pbxproj
+*.xcscheme
