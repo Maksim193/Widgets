@@ -5,9 +5,7 @@
 //  Created by Максим Косников on 06.01.2025.
 //
 
-import CoreFoundation
 import Combine
-import UIKit
 
 final class EditWidgetViewModel: ObservableObject {
 	@Published var widgetTitle: String = "Виджет 1"

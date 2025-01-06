@@ -12,71 +12,17 @@ struct EditWidgetView: View {
 	
 	var body: some View {
 		VStack {
-			Spacer(minLength: 32)
-			widgetTitle
+			WidgetTitle(title: viewModel.widgetTitle)
+				.padding([.top], 24)
 			WidgetsPageView()
 			Text("EditWidgetView.ChangeWidgetTitle")
 				.font(.headline)
-			editWidgetButtons
-			Spacer(minLength: 32)
-			saveButton
+			EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
+				.padding([.bottom], 32)
+			SaveButton()
 		}
 		.navigationTitle("EditWidgetView.title")
 		.navigationBarTitleDisplayMode(.inline)
-	}
-	
-	var widgetTitle: some View {
-		HStack {
-			Text(viewModel.widgetTitle)
-			Image(systemName: "square.and.pencil")
-		}
-		.font(.title3)
-		.background(alignment: .center) {
-			Color(.lightGray)
-				.cornerRadius(16)
-				.padding(-10)
-				.opacity(0.2)
-		}
-	}
-	
-	var editWidgetButtons: some View {
-		HStack {
-			ForEach(viewModel.editWidgetButtons, id: \.self) { model in
-				Button {
-					print()
-				} label: {
-					VStack {
-						ZStack {
-							Color(.gray)
-								.cornerRadius(16)
-								.opacity(0.2)
-							Image(systemName: model.image)
-								.font(.largeTitle)
-						}
-						.frame(width: 90, height: 70)
-						Text(LocalizedStringResource(stringLiteral: model.title))
-							.font(.footnote)
-					}
-					.foregroundStyle(.black)
-				}
-			}
-		}
-	}
-	
-	var saveButton: some View {
-		Button {
-			
-		} label: {
-			ZStack {
-				Color(.black)
-					.cornerRadius(16)
-					.frame(height: 60)
-					.padding([.leading, .trailing])
-				Text("EditWidgetView.SaveButton")
-					.font(.headline)
-					.foregroundStyle(.white)
-			}
-		}
 	}
 }
 
