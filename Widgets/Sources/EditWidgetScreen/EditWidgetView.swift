@@ -15,12 +15,14 @@ struct EditWidgetView: View {
 			Spacer(minLength: 32)
 			widgetTitle
 			WidgetsPageView()
-			Text("Изменить виджет")
+			Text("EditWidgetView.ChangeWidgetTitle")
 				.font(.headline)
 			editWidgetButtons
 			Spacer(minLength: 32)
 			saveButton
 		}
+		.navigationTitle("EditWidgetView.title")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 	
 	var widgetTitle: some View {
@@ -52,7 +54,7 @@ struct EditWidgetView: View {
 								.font(.largeTitle)
 						}
 						.frame(width: 90, height: 70)
-						Text(model.title)
+						Text(LocalizedStringResource(stringLiteral: model.title))
 							.font(.footnote)
 					}
 					.foregroundStyle(.black)
@@ -70,7 +72,7 @@ struct EditWidgetView: View {
 					.cornerRadius(16)
 					.frame(height: 60)
 					.padding([.leading, .trailing])
-				Text("Сохранить")
+				Text("EditWidgetView.SaveButton")
 					.font(.headline)
 					.foregroundStyle(.white)
 			}
@@ -79,5 +81,7 @@ struct EditWidgetView: View {
 }
 
 #Preview {
-	EditWidgetView(viewModel: EditWidgetViewModel())
+	NavigationStack {
+		EditWidgetView(viewModel: EditWidgetViewModel())
+	}
 }

@@ -12,8 +12,8 @@ import UIKit
 final class EditWidgetViewModel: ObservableObject {
 	@Published var widgetTitle: String = "Виджет 1"
 	let editWidgetButtons: [EditWidgetModel.EditWidgetButtonModel] = [
-		EditWidgetModel.EditWidgetButtonModel(image: "rectangle.3.group", title: "Тип виджета"),
-		EditWidgetModel.EditWidgetButtonModel(image: "photo", title: "Фото виджета"),
-		EditWidgetModel.EditWidgetButtonModel(image: "paintpalette", title: "Цвет виджета")
+		EditWidgetModel.EditWidgetButtonModel(image: "rectangle.3.group", title: "EditWidgetView.changeButton.type"),
+		EditWidgetModel.EditWidgetButtonModel(image: "photo", title: "EditWidgetView.changeButton.image"),
+		EditWidgetModel.EditWidgetButtonModel(image: "paintpalette", title: "EditWidgetView.changeButton.color")
 	]
 }
