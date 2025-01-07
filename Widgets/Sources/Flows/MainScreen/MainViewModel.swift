@@ -7,6 +7,39 @@
 
 import Combine
 
-final class MainViewModel {
+final class MainViewModel: ObservableObject {
     
+    //MARK: Publishers
+    @Published var isEditViewOpen = false
+    @Published var isCreateViewOpen = false
+    @Published var widgets: [WidgetView] = []
+    
+    //MARK: init
+    init() {
+        getWidgets()
+    }
+    
+    //MARK: actions
+    func routeEditWidget() {
+        isEditViewOpen = true
+    }
+    
+    func routeCreateWidget() {
+        isCreateViewOpen = true
+    }
+    
+    func deleteWidget() {
+        
+    }
+}
+
+//MARK: - private methods
+extension MainViewModel {
+    func getWidgets() {
+        self.widgets = [
+            .init(type: .medium),
+            .init(type: .medium),
+            .init(type: .medium)
+        ]
+    }
 }
