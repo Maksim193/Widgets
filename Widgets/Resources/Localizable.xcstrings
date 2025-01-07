@@ -103,6 +103,22 @@
     },
     "Hello, world!" : {
 
+    },
+    "MainView.button.createWidget" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create +"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать +"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
