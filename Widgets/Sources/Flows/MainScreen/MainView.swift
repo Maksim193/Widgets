@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
-    
+    /// viewModel
     @StateObject var viewModel: MainViewModel
     
+    //MARK: body
     var body: some View {
         ZStack {
+            //MARK: background
             Color(.white)
+            
+            //MARK: main content
             VStack {
                 HStack {
                     Spacer()
-                    
                     CreateButton(action: {
                         viewModel.routeCreateWidget()
                     })
@@ -26,45 +29,29 @@ struct MainView: View {
                     }
                 }
                 
+                
                 ScrollView {
                     LazyVStack(spacing: 15) {
-                        WidgetView(type: .medium)
-                        Text("widget 1")
-                        
-                        WidgetView(type: .medium)
-                        Text("widget 2")
+                        ForEach(viewModel.widgets) { widget in
+                            WidgetRowView(widget: widget)
+                                .onTapGesture {
+                                    viewModel.routeEditWidget()
+                                }
+                        }                        
                     }
+                    
                 }
-                Spacer()
+                .navigationDestination(isPresented: $viewModel.isEditViewOpen) {
+                    EditWidgetView(viewModel: .init())
+                }
             }
+            
+            //MARK: advert
             VStack {
                 Spacer()
-                Button {
-                    
-                } label: {
-                    VStack {
-                        Text("Скачай справочник СПЗ")
-                            .font(
-                                .system(
-                                    size: 27,
-                                    weight: .semibold,
-                                    design: .rounded
-                                )
-                            )
-                            .padding(.bottom)
-                        HStack {
-                            Text("erid: xxxxx")
-                            Spacer()
-                        }
-                    }
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.orange)
-                    .cornerRadius(20)
-                    .padding(.horizontal, 20)
+                AdvertView {
+                    viewModel.routerAdvertisement()
                 }
-
             }
         }
     }

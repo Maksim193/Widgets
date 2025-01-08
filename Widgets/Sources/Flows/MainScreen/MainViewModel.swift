@@ -12,7 +12,7 @@ final class MainViewModel: ObservableObject {
     //MARK: Publishers
     @Published var isEditViewOpen = false
     @Published var isCreateViewOpen = false
-    @Published var widgets: [WidgetView] = []
+    @Published var widgets: [Widget] = []
     
     //MARK: init
     init() {
@@ -28,8 +28,8 @@ final class MainViewModel: ObservableObject {
         isCreateViewOpen = true
     }
     
-    func deleteWidget() {
-        
+    func routerAdvertisement() {
+        print(#function)
     }
 }
 
@@ -37,9 +37,9 @@ final class MainViewModel: ObservableObject {
 extension MainViewModel {
     func getWidgets() {
         self.widgets = [
-            .init(type: .medium),
-            .init(type: .medium),
-            .init(type: .medium)
+            .init(title: "1st"),
+            .init(title: "2nd"),
+            .init(title: "3rd"),
         ]
     }
 }
