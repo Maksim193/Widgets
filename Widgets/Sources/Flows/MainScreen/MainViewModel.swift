@@ -40,6 +40,12 @@ extension MainViewModel {
             .init(title: "1st"),
             .init(title: "2nd"),
             .init(title: "3rd"),
+            .init(title: "1st"),
+            .init(title: "2nd"),
+            .init(title: "3rd"),
+            .init(title: "1st"),
+            .init(title: "2nd"),
+            .init(title: "3rd")
         ]
     }
 }

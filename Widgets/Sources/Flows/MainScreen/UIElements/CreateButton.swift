@@ -27,7 +27,7 @@ struct CreateButton: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 30, style: .circular)
-                .foregroundStyle(.gray.opacity(0.3))
+                .foregroundStyle(.white.opacity(0.7))
                 
         )
         .padding()
@@ -37,5 +37,11 @@ struct CreateButton: View {
 #Preview {
     CreateButton{
         print(111)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        MainView(viewModel: .init())
     }
 }
