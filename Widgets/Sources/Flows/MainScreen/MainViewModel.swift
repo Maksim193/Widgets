@@ -10,22 +10,22 @@ import Combine
 final class MainViewModel: ObservableObject {
     
     //MARK: Publishers
-    @Published var isEditViewOpen = false
-    @Published var isCreateViewOpen = false
+    @Published var isEditViewOpened = false
+    @Published var isCreateViewOpened = false
     @Published var widgets: [Widget] = []
     
-    //MARK: init
+    //MARK: Init
     init() {
         getWidgets()
     }
     
-    //MARK: actions
+    //MARK: Actions
     func routeEditWidget() {
-        isEditViewOpen = true
+        isEditViewOpened = true
     }
     
     func routeCreateWidget() {
-        isCreateViewOpen = true
+        isCreateViewOpened = true
     }
     
     func routerAdvertisement() {

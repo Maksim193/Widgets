@@ -30,7 +30,7 @@ struct CreateButton: View {
                 .foregroundStyle(.white.opacity(0.7))
                 
         )
-        .padding()
+        
     }
 }
 
