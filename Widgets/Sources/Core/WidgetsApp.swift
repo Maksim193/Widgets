@@ -11,7 +11,9 @@ import SwiftUI
 struct WidgetsApp: App {
     var body: some Scene {
         WindowGroup {
-			EditWidgetView(viewModel: EditWidgetViewModel())
+            NavigationStack {
+                MainView(viewModel: .init())
+            }
         }
     }
 }
