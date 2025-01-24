@@ -59,6 +59,18 @@ let staticWidgetInfoPlist: InfoPlist = .extendingDefault(with: [
 	]
 ])
 
+let widgetEntitlements = Entitlements.dictionary(
+	[
+		"com.apple.security.application-groups": ["group.ru.maksim.widgets"]
+	]
+)
+
+let widgetExtensionEntitlements = Entitlements.dictionary(
+	[
+		"com.apple.security.application-groups": ["group.ru.maksim.widgets"]
+	]
+)
+
 let staticFramework = Target.target(
 	name: "StaticFramework",
 	destinations: .iOS,
@@ -84,6 +96,7 @@ let staticWidget = Target.target(
 	infoPlist: staticWidgetInfoPlist,
 	sources: ["StaticWidget/**"],
 	resources: ["StaticWidget/Resources/**"],
+	entitlements: widgetExtensionEntitlements,
 	dependencies: [
 		.target(name: "Bundle"),
 		.target(name: "StaticFramework"),
@@ -99,6 +112,7 @@ let widgets = Target.target(
 	infoPlist: infoPlist,
 	sources: ["Widgets/Sources/**"],
 	resources: ["Widgets/Resources/**"],
+	entitlements: widgetEntitlements,
 	dependencies: [
 		.target(name: "WidgetExtension")
 	]

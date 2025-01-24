@@ -10,22 +10,23 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+		SimpleEntry(date: Date(), emoji: "😀", color: "black")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
+        let entry = SimpleEntry(date: Date(), emoji: "😀", color: "white")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
-
+		
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
+        for hourOffset in 0 ..< 30 {
+            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
+			let value = UserDefaults(suiteName: "group.ru.maksim.widgets")?.string(forKey: "color") ?? "purple"
+            let entry = SimpleEntry(date: entryDate, emoji: "😀", color: value)
             entries.append(entry)
         }
 
@@ -41,19 +42,23 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let emoji: String
+	let color: String
 }
 
 struct StaticWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Emoji:")
-            Text(entry.emoji)
-        }
+		ZStack {
+			Color(uiColor: UIColor().named(entry.color)!)
+			VStack {
+				Text("Time:")
+				Text(entry.date, format: .dateTime.hour().minute().second())
+				
+				Text("Emoji:")
+				Text(entry.emoji)
+			}
+		}
     }
 }
 
@@ -79,6 +84,20 @@ struct StaticWidget: Widget {
 #Preview(as: .systemSmall) {
     StaticWidget()
 } timeline: {
-    SimpleEntry(date: .now, emoji: "😀")
-    SimpleEntry(date: .now, emoji: "🤩")
+	SimpleEntry(date: .now, emoji: "😀", color: "purple")
+    SimpleEntry(date: .now, emoji: "🤩", color: "purple")
+}
+
+
+extension UIColor {
+	public func named(_ name: String) -> UIColor? {
+		let allColors: [String: UIColor] = [
+			"red": .red,
+			"black": .black,
+			"green": .green,
+			"purple": .purple
+		]
+		let cleanedName = name.replacingOccurrences(of: " ", with: "").lowercased()
+		return allColors[cleanedName]
+	}
 }

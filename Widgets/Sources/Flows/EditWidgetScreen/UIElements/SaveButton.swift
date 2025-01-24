@@ -10,7 +10,7 @@ import SwiftUI
 struct SaveButton: View {
 	var body: some View {
 		Button {
-			
+			setValue()
 		} label: {
 			ZStack {
 				Color(.black)
@@ -22,5 +22,9 @@ struct SaveButton: View {
 					.foregroundStyle(.white)
 			}
 		}
+	}
+	
+	func setValue() {
+		UserDefaults(suiteName: "group.ru.maksim.widgets")?.set("green", forKey: "color")
 	}
 }

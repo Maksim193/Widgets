@@ -11,19 +11,19 @@ struct EditWidgetView: View {
 	@StateObject var viewModel: EditWidgetViewModel
 	
 	var body: some View {
-		VStack {
-			WidgetTitle(title: viewModel.widgetTitle)
-				.padding([.top], 24)
-			WidgetsPageView()
-			Text("EditWidgetView.ChangeWidgetTitle")
-				.font(.headline)
-			EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
-				.padding([.bottom], 32)
-			SaveButton()
+			VStack {
+				WidgetTitle(title: viewModel.widgetTitle)
+					.padding([.top], 24)
+				WidgetsPageView()
+				Text("EditWidgetView.ChangeWidgetTitle")
+					.font(.headline)
+				EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
+					.padding([.bottom], 32)
+				SaveButton()
+			}
+			.navigationTitle("EditWidgetView.title")
+			.navigationBarTitleDisplayMode(.inline)
 		}
-		.navigationTitle("EditWidgetView.title")
-		.navigationBarTitleDisplayMode(.inline)
-	}
 }
 
 #Preview {
