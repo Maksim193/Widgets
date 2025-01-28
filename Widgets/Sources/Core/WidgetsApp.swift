@@ -15,8 +15,7 @@ struct WidgetsApp: App {
         WindowGroup {
             NavigationStack {
                 MainView(viewModel: .init())
-					.backyardBirdsDataContainer()
-            }
+			}
         }
     }
 }

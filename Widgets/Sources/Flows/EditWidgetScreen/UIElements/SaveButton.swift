@@ -30,8 +30,7 @@ struct SaveButton: View {
 	
 	func setValue() {
 		UserDefaults(suiteName: "group.ru.maksim.widgets")?.set("green", forKey: "color")
-		let newWidgetModel = WidgetModel(name: "red")
-//		widgets.append(newWidgetModel)
+		let newWidgetModel = WidgetModel(name: "green")
 		modelContext.insert(newWidgetModel)
 	}
 }

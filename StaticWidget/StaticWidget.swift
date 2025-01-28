@@ -13,14 +13,18 @@ struct Provider: AppIntentTimelineProvider {
 	typealias Intent = TestWidgetConfigurationIntent
 	
 	func snapshot(for configuration: TestWidgetConfigurationIntent, in context: Context) async -> SimpleEntry {
-		let entry = SimpleEntry(date: Date(), emoji: "", color: "red")
+//		let color = configuration.widget?/*.first?*/.string ?? "purple"
+		let color = configuration.widget?.string
+		let entry = SimpleEntry(date: Date(), emoji: "", color: color)
 		return entry
 	}
 	
 	func timeline(for configuration: TestWidgetConfigurationIntent, in context: Context) async -> Timeline<SimpleEntry> {
+//		let color = configuration.widget?/*.first?*/.string ?? "purple"
+		let color = configuration.widget?.string
 		let timeline = Timeline(
 			entries: [
-				SimpleEntry(date: Date(), emoji: "", color: "red")
+				SimpleEntry(date: Date(), emoji: "", color: color)
 			],
 			policy: .never
 		)
@@ -28,14 +32,14 @@ struct Provider: AppIntentTimelineProvider {
 	}
 	
 	func placeholder(in context: Context) -> SimpleEntry {
-		SimpleEntry(date: Date(), emoji: "", color: "red")
+		SimpleEntry(date: Date(), emoji: "", color: "purple")
 	}
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let emoji: String
-	let color: String
+	let color: String?
 }
 
 struct StaticWidgetEntryView : View {
@@ -43,7 +47,7 @@ struct StaticWidgetEntryView : View {
 
     var body: some View {
 		ZStack {
-			Color(uiColor: UIColor().named(entry.color)!)
+			Color(uiColor: UIColor().named(entry.color ?? "purple")!)
 			VStack {
 				Text("Time:")
 				Text(entry.date, format: .dateTime.hour().minute().second())
