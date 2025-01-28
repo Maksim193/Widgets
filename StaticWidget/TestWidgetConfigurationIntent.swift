@@ -11,7 +11,6 @@ struct TestWidgetConfigurationIntent: WidgetConfigurationIntent {
 	static var title: LocalizedStringResource = "Events"
 	static var description = IntentDescription("Selects the character to display information for.")
 	
-	@Parameter(title: "@Parameter")
-	var widget: EventAppIntent?
-	
+	@Parameter(title: "@ParameterTitle")
+	var widget: [EventAppIntent]?
 }

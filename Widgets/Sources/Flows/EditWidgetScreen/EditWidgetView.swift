@@ -20,6 +20,7 @@ struct EditWidgetView: View {
 				EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
 					.padding([.bottom], 32)
 				SaveButton()
+					.backyardBirdsDataContainer()
 			}
 			.navigationTitle("EditWidgetView.title")
 			.navigationBarTitleDisplayMode(.inline)

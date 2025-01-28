@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import AppIntents
 import SwiftData
 
 struct EventAppIntent: AppEntity {
@@ -17,7 +16,7 @@ struct EventAppIntent: AppEntity {
 	static var defaultQuery = WidgetQuery()
 	
 	var displayRepresentation: DisplayRepresentation {
-		DisplayRepresentation(title: "DisplayRepresentation")
+		DisplayRepresentation(title: "\(string)")
 	}
 }
 
@@ -36,10 +35,15 @@ struct WidgetQuery: EntityQuery {
 	}
 	
 	private func fetchEventIntents() async -> [EventAppIntent] {
-		return [
-			EventAppIntent(id: "1", string: "first"),
-			EventAppIntent(id: "2", string: "second"),
-			EventAppIntent(id: "3", string: "third")
-		]
+		let modelContext = ModelContext(DataGeneration.container)
+		let widgets = try! modelContext.fetch(FetchDescriptor<WidgetModel>())
+//		return [
+//			EventAppIntent(id: "1", string: "first"),
+//			EventAppIntent(id: "2", string: "second"),
+//			EventAppIntent(id: "3", string: "third")
+//		]
+		
+		return widgets.map { EventAppIntent(id: $0.id, string: $0.name)}
+//		return []
 	}
 }
