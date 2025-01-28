@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SaveButton: View {
+	@Query private var widgets: [WidgetModel]
+	@Environment(\.modelContext) private var context
+	
 	var body: some View {
 		Button {
 			setValue()
@@ -26,5 +30,7 @@ struct SaveButton: View {
 	
 	func setValue() {
 		UserDefaults(suiteName: "group.ru.maksim.widgets")?.set("green", forKey: "color")
+		let newWidgetModel = WidgetModel(name: "red")
+		context.insert(newWidgetModel)
 	}
 }

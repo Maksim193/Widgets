@@ -8,35 +8,28 @@
 import WidgetKit
 import SwiftUI
 
-struct Provider: TimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-		SimpleEntry(date: Date(), emoji: "😀", color: "black")
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀", color: "white")
-        completion(entry)
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-		
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 30 {
-            let entryDate = Calendar.current.date(byAdding: .second, value: hourOffset, to: currentDate)!
-			let value = UserDefaults(suiteName: "group.ru.maksim.widgets")?.string(forKey: "color") ?? "purple"
-            let entry = SimpleEntry(date: entryDate, emoji: "😀", color: value)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
-    }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
+struct Provider: AppIntentTimelineProvider {
+	typealias Entry = SimpleEntry
+	typealias Intent = TestWidgetConfigurationIntent
+	
+	func snapshot(for configuration: TestWidgetConfigurationIntent, in context: Context) async -> SimpleEntry {
+		let entry = SimpleEntry(date: Date(), emoji: "", color: "red")
+		return entry
+	}
+	
+	func timeline(for configuration: TestWidgetConfigurationIntent, in context: Context) async -> Timeline<SimpleEntry> {
+		let timeline = Timeline(
+			entries: [
+				SimpleEntry(date: Date(), emoji: "", color: "red")
+			],
+			policy: .never
+		)
+		return timeline
+	}
+	
+	func placeholder(in context: Context) -> SimpleEntry {
+		SimpleEntry(date: Date(), emoji: "", color: "red")
+	}
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -65,20 +58,22 @@ struct StaticWidgetEntryView : View {
 struct StaticWidget: Widget {
     let kind: String = "StaticWidget"
 
+	@MainActor
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            if #available(iOS 17.0, *) {
-                StaticWidgetEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget)
-            } else {
-                StaticWidgetEntryView(entry: entry)
-                    .padding()
-                    .background()
-            }
-        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-    }
+		AppIntentConfiguration(
+			kind: kind,
+			intent: TestWidgetConfigurationIntent.self,
+			provider: Provider()
+		) { entry in
+			if #available(iOS 17.0, *) {
+				StaticWidgetEntryView(entry: entry)
+					.containerBackground(.fill.tertiary, for: .widget)
+			} else {
+				StaticWidgetEntryView(entry: entry)
+			}
+		}
+		.configurationDisplayName("configurationDisplayName")
+	}
 }
 
 #Preview(as: .systemSmall) {
