@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WidgetViewType {
+enum WidgetViewSizeType {
 	case small
 	case medium
 	case large

@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
     /// viewModel типа MainViewModel
     @StateObject var viewModel: MainViewModel
+	
     
     //MARK: body
     var body: some View {

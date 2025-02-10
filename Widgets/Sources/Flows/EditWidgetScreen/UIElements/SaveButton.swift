@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct SaveButton: View {
-	@Query private var widgets: [WidgetModel]
 	@Environment(\.modelContext) private var modelContext
 	
 	var body: some View {
@@ -29,8 +28,14 @@ struct SaveButton: View {
 	}
 	
 	func setValue() {
-		UserDefaults(suiteName: "group.ru.maksim.widgets")?.set("green", forKey: "color")
-		let newWidgetModel = WidgetModel(name: "green")
+		let digitalClockWidgetModel = DigitalClockWidgetModel(
+			backgroundImage: (UIImage(systemName: "photo.artframe.circle.fill")?.jpegData(compressionQuality: .greatestFiniteMagnitude))!,
+			font: "SF-Pro"
+		)
+		let newWidgetModel = WidgetModel(
+			name: "green",
+			type: .digitalClock(digitalClockWidgetModel)
+		)
 		modelContext.insert(newWidgetModel)
 	}
 }

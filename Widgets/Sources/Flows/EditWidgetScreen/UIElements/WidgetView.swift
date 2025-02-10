@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WidgetView: View {
-	let type: WidgetViewType
+	let type: WidgetViewSizeType
 	
 	var body: some View {
 		let width: CGFloat = {
@@ -36,5 +37,12 @@ struct WidgetView: View {
 }
 
 #Preview {
+		let schema = Schema([
+			WidgetModel.self,
+		])
+		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+		
+	let container =  try! ModelContainer(for: schema, configurations: [modelConfiguration])
 	EditWidgetView(viewModel: EditWidgetViewModel())
+		.modelContainer(container)
 }

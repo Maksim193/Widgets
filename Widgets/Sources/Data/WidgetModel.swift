@@ -9,12 +9,27 @@ import Foundation
 import SwiftData
 
 @Model
-public class WidgetModel {
-	@Attribute(.unique) public var id: String
-	public var name: String
+class WidgetModel {
+	@Attribute(.unique) var id: String
+	var name: String
+	var type: WidgetType
 	
-	public init(name: String) {
+	init(
+		name: String,
+		type: WidgetType
+	) {
 		self.id = UUID().uuidString
 		self.name = name
+		self.type = type
 	}
+}
+
+enum WidgetType: Codable {
+	case example
+	case digitalClock(DigitalClockWidgetModel)
+}
+
+struct DigitalClockWidgetModel: Codable {
+	let backgroundImage: Data
+	let font: String
 }

@@ -52,7 +52,9 @@ let infoPlist: InfoPlist = .extendingDefault(with: [
 	"CFBundleDisplayName": "\(appName)"
 ])
 
-let staticWidgetInfoPlist: InfoPlist = .extendingDefault(with: [
+let widgetInfoPlist: InfoPlist = .extendingDefault(with: [
+	"CFBundleLocalizations": ["ru", "en"],
+	"CFBundleDevelopmentRegion": "ru",
 	"CFBundleDisplayName": "$(PRODUCT_NAME)",
 	"NSExtension": [
 		"NSExtensionPointIdentifier": "com.apple.widgetkit-extension",
@@ -71,13 +73,13 @@ let widgetExtensionEntitlements = Entitlements.dictionary(
 	]
 )
 
-let staticFramework = Target.target(
-	name: "StaticFramework",
+let widgetFramework = Target.target(
+	name: "WidgetFramework",
 	destinations: .iOS,
 	product: .staticFramework,
 	bundleId: "io.tuist.App.StaticFramework",
 	infoPlist: .default,
-	sources: "StaticFramework/Sources/**"
+	sources: "WidgetFramework/Sources/**"
 )
 
 let bundle = Target.target(
@@ -88,18 +90,18 @@ let bundle = Target.target(
 	resources: "Bundle/**"
 )
 
-let staticWidget = Target.target(
+let widgetExtension = Target.target(
 	name: "WidgetExtension",
 	destinations: .iOS,
 	product: .appExtension,
-	bundleId: "ru.maksim.widgets.staticWidget",
-	infoPlist: staticWidgetInfoPlist,
-	sources: ["StaticWidget/**"],
-	resources: ["StaticWidget/Resources/**"],
+	bundleId: "ru.maksim.widgets.widgetExtension",
+	infoPlist: widgetInfoPlist,
+	sources: ["HomescreenWidget/**"],
+	resources: ["HomescreenWidget/Resources/**"],
 	entitlements: widgetExtensionEntitlements,
 	dependencies: [
 		.target(name: "Bundle"),
-		.target(name: "StaticFramework"),
+		.target(name: "WidgetFramework"),
 	]
 )
 
@@ -126,9 +128,9 @@ let project = Project(
 	),
 	targets: [
 		widgets,
-		staticWidget,
+		widgetExtension,
 		bundle,
-		staticFramework
+		widgetFramework
 	],
 	schemes: [
 		.scheme(
