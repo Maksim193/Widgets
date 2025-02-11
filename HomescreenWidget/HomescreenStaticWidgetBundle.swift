@@ -1,6 +1,6 @@
 //
-//  StaticWidgetBundle.swift
-//  StaticWidget
+//  HomescreenStaticWidgetBundle.swift
+//  HomescreenWidget
 //
 //  Created by Максим Косников on 10.01.2025.
 //
@@ -9,8 +9,8 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct StaticWidgetBundle: WidgetBundle {
+struct HomescreenStaticWidgetBundle: WidgetBundle {
     var body: some Widget {
-        StaticWidget()
+		HomescreenWidget()
     }
 }

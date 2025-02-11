@@ -6,8 +6,11 @@
 //
 
 import Combine
+import SwiftUI
+import SwiftData
 
 final class MainViewModel: ObservableObject {
+	@Query private var widgets1: [WidgetModel]
     
     //MARK: Publishers
     @Published var isEditViewOpened = false
