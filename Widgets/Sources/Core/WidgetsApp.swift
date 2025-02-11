@@ -12,7 +12,7 @@ import SwiftData
 struct WidgetsApp: App {
 	var sharedModelContainer: ModelContainer = {
 		do {
-			return try ModelContainer(for: WidgetModel.self)
+			return try ModelContainer(for: WidgetModel.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
 		} catch {
 			fatalError("Could not create ModelContainer: \(error)")
 		}
@@ -22,7 +22,6 @@ struct WidgetsApp: App {
         WindowGroup {
             NavigationStack {
                 MainView(viewModel: .init())
-					
 			}
         }
 		.modelContainer(sharedModelContainer)
