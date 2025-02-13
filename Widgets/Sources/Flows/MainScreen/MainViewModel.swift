@@ -10,19 +10,17 @@ import SwiftUI
 import SwiftData
 
 final class MainViewModel: ObservableObject {
-	@Query private var widgets1: [WidgetModel]
-    
-    //MARK: Publishers
+    // MARK: - Publishers
     @Published var isEditViewOpened = false
     @Published var isCreateViewOpened = false
-    @Published var widgets: [Widget] = []
+    @Published var previewWidgets: [WidgetPreviewModel] = []
     
-    //MARK: Init
+    // MARK: - Init
     init() {
         getWidgets()
     }
     
-    //MARK: Actions
+    // MARK: - Actions
     func routeEditWidget() {
         isEditViewOpened = true
     }
@@ -34,21 +32,42 @@ final class MainViewModel: ObservableObject {
     func routerAdvertisement() {
         print(#function)
     }
+	
+	// MARK: - Map methods
+	
+	private func mapWidgetType(_ type: WidgetType) -> WidgetPreviewType {
+		switch type {
+		case .example:
+			return .example
+		case .digitalClock(let digitalClockModel):
+			let digitalClockPreviewModel = self.mapDigitalClockType(digitalClockModel)
+			return .digitalClock(digitalClockPreviewModel)
+		}
+	}
+	
+	private func mapDigitalClockType(_ model: DigitalClockWidgetModel) -> DigitalClockWidgetPreviewModel {
+		let backgroundImage = UIImage(data: model.backgroundImage)
+		return DigitalClockWidgetPreviewModel(
+			backgroundImage: backgroundImage,
+			font: model.font
+		)
+	}
 }
 
-//MARK: - private methods
 extension MainViewModel {
+	
+	// MARK: - Internal methods
+	
     func getWidgets() {
-        self.widgets = [
-            .init(title: "1st"),
-            .init(title: "2nd"),
-            .init(title: "3rd"),
-            .init(title: "1st"),
-            .init(title: "2nd"),
-            .init(title: "3rd"),
-            .init(title: "1st"),
-            .init(title: "2nd"),
-            .init(title: "3rd")
-        ]
+		let modelContainer = try! ModelContainer(for: WidgetModel.self)
+		let modelContext = ModelContext(modelContainer)
+		let widgets = try! modelContext.fetch(FetchDescriptor<WidgetModel>())
+		self.previewWidgets = widgets.map {
+			WidgetPreviewModel(
+				id: $0.id,
+				name: $0.name,
+				type: self.mapWidgetType($0.type)
+			)
+		}
     }
 }

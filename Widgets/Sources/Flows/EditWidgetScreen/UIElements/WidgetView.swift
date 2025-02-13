@@ -10,6 +10,7 @@ import SwiftData
 
 struct WidgetView: View {
 	let type: WidgetViewSizeType
+	let widgetModel: WidgetPreviewModel
 	
 	var body: some View {
 		let width: CGFloat = {
@@ -30,19 +31,33 @@ struct WidgetView: View {
 				return screenHeight / 2.4
 			}
 		}()
-		Color(.gray)
-			.frame(width: width, height: height)
-			.cornerRadius(20)
+		
+		HStack {
+			switch widgetModel.type {
+			case .example:
+				Color(.gray)
+			case .digitalClock(let digitalClockModel):
+				DigitalClockWidgetPreviewView(widgetModel: digitalClockModel)
+			}
+		}
+		.frame(width: width, height: height)
+		.cornerRadius(20)
 	}
 }
 
-#Preview {
-		let schema = Schema([
-			WidgetModel.self,
-		])
-		let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-		
-	let container =  try! ModelContainer(for: schema, configurations: [modelConfiguration])
-	EditWidgetView(viewModel: EditWidgetViewModel())
-		.modelContainer(container)
+struct DigitalClockWidgetPreviewView: View {
+	let widgetModel: DigitalClockWidgetPreviewModel
+	
+	var body: some View {
+		ZStack {
+			if let image = widgetModel.backgroundImage {
+				Image(uiImage: image)
+					.resizable()
+			}
+			VStack {
+				Text("Time:")
+				Text(Date(), format: .dateTime.hour().minute().second())
+			}
+		}
+	}
 }
