@@ -29,7 +29,7 @@ struct WidgetTitle: View {
 			}
 		}
 		.alert(isPresented: $isPresentedCharLimitAlert) {
-			Alert(title: Text("Минимум 2 символа"))
+			Alert(title: Text("EditWidgetView.tileSymbolsAmountAlert.message"))
 		}
 	}
 	
@@ -85,7 +85,7 @@ struct WidgetTitle: View {
 	}
 	
 	private func validateEnteredTitle() -> Bool {
-		return dummyText.trimmingCharacters(in: .whitespacesAndNewlines).count < 2
+		return dummyText.trimmingCharacters(in: .whitespacesAndNewlines).count > 2
 	}
 	
 	private func changeText() {

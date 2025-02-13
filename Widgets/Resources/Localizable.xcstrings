@@ -84,6 +84,23 @@
         }
       }
     },
+    "EditWidgetView.tileSymbolsAmountAlert.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Minimum title length is 2 symbols"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Минимум 2 символа"
+          }
+        }
+      }
+    },
     "EditWidgetView.title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118,9 +135,6 @@
       }
     },
     "My widgets" : {
-
-    },
-    "Минимум 2 символа" : {
 
     }
   },
