@@ -23,8 +23,8 @@ struct MainView: View {
             //MARK: Collection
             ScrollView {
                 LazyVStack(spacing: 15) {
-                    ForEach(viewModel.widgets) { widget in
-                        WidgetRowView(widget: widget)
+					ForEach(viewModel.previewWidgets) { widgetModel in
+                        WidgetRowView(widgetModel: widgetModel)
                             .onTapGesture {
                                 viewModel.routeEditWidget()
                             }

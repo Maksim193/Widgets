@@ -9,14 +9,10 @@ import SwiftUI
 
 struct WidgetRowView: View {
     
-    let widget: Widget
+    let widgetModel: WidgetPreviewModel
     
     var body: some View {
-        WidgetView(type: .medium)
-        Text(widget.title)
+		WidgetView(type: .medium, widgetModel: widgetModel)
+        Text(widgetModel.name)
     }
-}
-
-#Preview {
-    WidgetRowView(widget: .init(title: "Hello World"))
 }
