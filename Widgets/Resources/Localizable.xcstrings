@@ -53,6 +53,7 @@
       }
     },
     "EditWidgetView.ChangeWidgetTitle" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -89,14 +90,14 @@
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Edit widget"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактирование виджета"
+            "value" : "Редактор"
           }
         }
       }
