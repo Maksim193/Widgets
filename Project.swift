@@ -49,7 +49,15 @@ let infoPlist: InfoPlist = .extendingDefault(with: [
 		"UIInterfaceOrientationPortraitUpsideDown"
 	],
 	"LSApplicationQueriesSchemes": ["tg"],
-	"CFBundleDisplayName": "\(appName)"
+	"CFBundleDisplayName": "\(appName)",
+	"UIAppFonts": [
+		"Audiowide-Regular.ttf",
+		"DotGothic16-Regular.ttf",
+		"Michroma-Regular.ttf",
+		"RalewayDots-Regular.ttf",
+		"StickNoBills-Regular.ttf",
+		"Montserrat-Regular.ttf",
+	]
 ])
 
 let widgetInfoPlist: InfoPlist = .extendingDefault(with: [

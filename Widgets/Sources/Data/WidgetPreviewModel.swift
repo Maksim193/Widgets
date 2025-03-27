@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 struct WidgetPreviewModel: Identifiable {
 	let id: String
@@ -31,5 +31,50 @@ enum WidgetPreviewType {
 
 struct DigitalClockWidgetPreviewModel {
 	let backgroundImage: UIImage?
-	let font: String
+	let backgroundColor: UIColor
+	let foregroundColor: UIColor
+	let font: ClockWidgetFont
+	
+	enum ClockWidgetFont {
+		case montserrat
+		case michroma
+		case stickNoBills
+		case dotGothic16
+		case ralewayDots
+		case SFPro
+		
+		var stringValue: String {
+			switch self {
+			case .montserrat:
+				return "Montserrat"
+			case .michroma:
+				return "Michroma"
+			case .stickNoBills:
+				return "StickNoBills"
+			case .dotGothic16:
+				return "DotGothic16"
+			case .ralewayDots:
+				return "RalewayDots"
+			case .SFPro:
+				return "SFPro"
+			}
+		}
+		
+		var value: Font {
+			switch self {
+			case .montserrat:
+				return .custom("Montserrat-Regular", size: 40)
+			case .michroma:
+				return .custom("Michroma-Regular", size: 24)
+			case .stickNoBills:
+				return .custom("StickNoBills-Regular", size: 48)
+			case .dotGothic16:
+				return .custom("DotGothic16-Regular", size: 40)
+			case .ralewayDots:
+				return .custom("RalewayDots-Regular", size: 48)
+			case .SFPro:
+				return .system(size: 40)
+			}
+		}
+	}
 }

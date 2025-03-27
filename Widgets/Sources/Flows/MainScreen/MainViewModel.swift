@@ -49,7 +49,9 @@ final class MainViewModel: ObservableObject {
 		let backgroundImage = UIImage(data: model.backgroundImage)
 		return DigitalClockWidgetPreviewModel(
 			backgroundImage: backgroundImage,
-			font: model.font
+			backgroundColor: .black,
+			foregroundColor: .white,
+			font: .SFPro
 		)
 	}
 }
