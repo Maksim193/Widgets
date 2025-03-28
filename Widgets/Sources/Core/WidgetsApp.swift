@@ -10,19 +10,28 @@ import SwiftData
 
 @main
 struct WidgetsApp: App {
-	var sharedModelContainer: ModelContainer = {
+	private let repository: RepositoryProtocol
+	private let widgetsDataWorker:WidgetsDataWorkerProtocol
+	private let sharedModelContainer: ModelContainer
+	
+	init() {
+		self.repository = Repository()
+		self.widgetsDataWorker = WidgetsDataWorker(repository: repository)
 		do {
-			return try ModelContainer(for: WidgetModel.self)
+			self.sharedModelContainer = try ModelContainer(for: WidgetModel.self)
 		} catch {
-			fatalError("Could not create ModelContainer: \(error)")
-		}
-	}()
+			 fatalError("Could not create ModelContainer: \(error)")
+		 }
+	}
 	
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                MainView(viewModel: .init())
-					
+				MainView(
+					viewModel: MainViewModel(
+						widgetsDataWorker: self.widgetsDataWorker
+					)
+				)
 			}
         }
 		.modelContainer(sharedModelContainer)

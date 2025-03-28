@@ -66,6 +66,14 @@ let widgetInfoPlist: InfoPlist = .extendingDefault(with: [
 	"CFBundleDisplayName": "$(PRODUCT_NAME)",
 	"NSExtension": [
 		"NSExtensionPointIdentifier": "com.apple.widgetkit-extension",
+	],
+	"UIAppFonts": [
+		"Audiowide-Regular.ttf",
+		"DotGothic16-Regular.ttf",
+		"Michroma-Regular.ttf",
+		"RalewayDots-Regular.ttf",
+		"StickNoBills-Regular.ttf",
+		"Montserrat-Regular.ttf",
 	]
 ])
 

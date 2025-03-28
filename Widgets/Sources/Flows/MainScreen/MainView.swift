@@ -47,11 +47,15 @@ struct MainView: View {
                 }
             }
         }
+		.onAppear {
+			viewModel.viewIsReady()
+		}
     }
 }
 
 #Preview {
+	let widgetsDataWorker = WidgetsDataWorker(repository: Repository())
     NavigationStack {
-        MainView(viewModel: .init())
+		MainView(viewModel: .init(widgetsDataWorker: widgetsDataWorker))
     }
 }

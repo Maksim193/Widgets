@@ -14,23 +14,27 @@ struct HomescreenWidgetProvider: AppIntentTimelineProvider {
 	
 	func snapshot(for configuration: ConfigurationIntent, in context: Context) async -> Entry {
 		let color = configuration.widget?.widgetName
-		let entry = Entry(date: Date(), color: color, image: configuration.widget?.image)
+		let entry = Entry(date: Date(), color: color, image: configuration.widget?.image, font: configuration.widget?.font)
 		return entry
 	}
 	
 	func timeline(for configuration: ConfigurationIntent, in context: Context) async -> Timeline<Entry> {
-		var entries: [HomescreenWidgetEntry] = []
-		let currentDate = Date()
-		for secondOffset in 0 ..< 1000 {
-			let entryDate = Calendar.current.date(byAdding: .second, value: secondOffset, to: currentDate)!
-			let color = configuration.widget?.widgetName
-			let entry = Entry(date: entryDate, color: color, image: configuration.widget?.image)
-			entries.append(entry)
-		}
-		return Timeline(entries: entries, policy: .atEnd)
+//		var entries: [HomescreenWidgetEntry] = []
+//		let currentDate = Date()
+//		for secondOffset in 0 ..< 10 {
+//			let entryDate = Calendar.current.date(byAdding: .second, value: secondOffset, to: currentDate)!
+//			let color = configuration.widget?.widgetName
+//			let entry = Entry(date: entryDate, color: color, image: configuration.widget?.image, font: configuration.widget?.font)
+//			entries.append(entry)
+//		}
+//		return Timeline(entries: entries, policy: .atEnd)
+		let nextUpdate: Date = .now.addingTimeInterval(60)
+		let color = configuration.widget?.widgetName
+		let entry = Entry(date: Date(), color: color, image: configuration.widget?.image, font: configuration.widget?.font)
+		return Timeline(entries: [entry], policy: .after(nextUpdate))
 	}
 	
 	func placeholder(in context: Context) -> Entry {
-		Entry(date: Date(), color: nil, image: nil)
+		Entry(date: Date(), color: nil, image: nil, font: .system(size: 40))
 	}
 }

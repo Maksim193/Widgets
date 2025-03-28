@@ -7,69 +7,101 @@
 
 import Combine
 import SwiftUI
-import SwiftData
 
 final class MainViewModel: ObservableObject {
+	
+	// MARK: - Dependencies
+	
+	private let widgetsDataWorker: WidgetsDataWorkerProtocol
+	
     // MARK: - Publishers
     @Published var isEditViewOpened = false
     @Published var isCreateViewOpened = false
     @Published var previewWidgets: [WidgetPreviewModel] = []
     
     // MARK: - Init
-    init() {
-        getWidgets()
+    init(
+		widgetsDataWorker: WidgetsDataWorkerProtocol
+	) {
+		self.widgetsDataWorker = widgetsDataWorker
     }
     
     // MARK: - Actions
+	
     func routeEditWidget() {
         isEditViewOpened = true
     }
     
     func routeCreateWidget() {
-        isCreateViewOpened = true
+//        isCreateViewOpened = true
+		let digitalClock = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .SFPro
+		)
+		let widgetModel = WidgetPreviewModel(id: "", name: "SFPro", type: .digitalClock(digitalClock))
+		self.widgetsDataWorker.saveWidget(widgetModel)
+		let digitalClock1 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .dotGothic16
+		)
+		let widgetModel1 = WidgetPreviewModel(id: "", name: "DotGothic16", type: .digitalClock(digitalClock1))
+		self.widgetsDataWorker.saveWidget(widgetModel1)
+		let digitalClock2 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .dotGothic16
+		)
+		let widgetModel2 = WidgetPreviewModel(id: "", name: "DotGothic16", type: .digitalClock(digitalClock2))
+		self.widgetsDataWorker.saveWidget(widgetModel2)
+		let digitalClock3 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .michroma
+		)
+		let widgetModel3 = WidgetPreviewModel(id: "", name: "Michroma", type: .digitalClock(digitalClock3))
+		self.widgetsDataWorker.saveWidget(widgetModel3)
+		let digitalClock4 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .montserrat
+		)
+		let widgetModel4 = WidgetPreviewModel(id: "", name: "Montsertat", type: .digitalClock(digitalClock4))
+		self.widgetsDataWorker.saveWidget(widgetModel4)
+		let digitalClock5 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .ralewayDots
+		)
+		let widgetModel5 = WidgetPreviewModel(id: "", name: "RalewayDots", type: .digitalClock(digitalClock5))
+		self.widgetsDataWorker.saveWidget(widgetModel5)
+		let digitalClock6 = DigitalClockWidgetPreviewModel(
+			backgroundImage: nil,
+			backgroundColor: .black,
+			foregroundColor: .black,
+			font: .stickNoBills
+		)
+		let widgetModel6 = WidgetPreviewModel(id: "", name: "StickNoBills", type: .digitalClock(digitalClock6))
+		self.widgetsDataWorker.saveWidget(widgetModel6)
     }
     
     func routerAdvertisement() {
         print(#function)
     }
-	
-	// MARK: - Map methods
-	
-	private func mapWidgetType(_ type: WidgetType) -> WidgetPreviewType {
-		switch type {
-		case .example:
-			return .example
-		case .digitalClock(let digitalClockModel):
-			let digitalClockPreviewModel = self.mapDigitalClockType(digitalClockModel)
-			return .digitalClock(digitalClockPreviewModel)
-		}
-	}
-	
-	private func mapDigitalClockType(_ model: DigitalClockWidgetModel) -> DigitalClockWidgetPreviewModel {
-		let backgroundImage = UIImage(data: model.backgroundImage)
-		return DigitalClockWidgetPreviewModel(
-			backgroundImage: backgroundImage,
-			backgroundColor: .black,
-			foregroundColor: .white,
-			font: .SFPro
-		)
-	}
 }
 
 extension MainViewModel {
 	
 	// MARK: - Internal methods
 	
-    func getWidgets() {
-		let modelContainer = try! ModelContainer(for: WidgetModel.self)
-		let modelContext = ModelContext(modelContainer)
-		let widgets = try! modelContext.fetch(FetchDescriptor<WidgetModel>())
-		self.previewWidgets = widgets.map {
-			WidgetPreviewModel(
-				id: $0.id,
-				name: $0.name,
-				type: self.mapWidgetType($0.type)
-			)
-		}
+    func viewIsReady() {
+		self.previewWidgets = self.widgetsDataWorker.getWidgetsPreviewData()
     }
 }

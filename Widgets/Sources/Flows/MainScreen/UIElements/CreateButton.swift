@@ -41,7 +41,8 @@ struct CreateButton: View {
 }
 
 #Preview {
-    NavigationStack {
-        MainView(viewModel: .init())
-    }
+	let widgetsDataWorker = WidgetsDataWorker(repository: Repository())
+	NavigationStack {
+		MainView(viewModel: .init(widgetsDataWorker: widgetsDataWorker))
+	}
 }

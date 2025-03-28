@@ -7,12 +7,13 @@
 
 import AppIntents
 import SwiftData
-import UIKit
+import SwiftUI
 
 struct HomescreenWidgetAppIntent: AppEntity {
 	var id: String
 	var widgetName: String
 	var image: UIImage?
+	var font: Font
 	
 	static var typeDisplayRepresentation: TypeDisplayRepresentation = "TypeDisplayRepresentation"
 	static var defaultQuery = HomescreenWidgetQuery()
@@ -46,8 +47,28 @@ struct HomescreenWidgetQuery: EntityQuery {
 				return nil
 			case .digitalClock(let model):
 				let image = UIImage(data: model.backgroundImage)
-				return HomescreenWidgetAppIntent(id: $0.id, widgetName: $0.name, image: image)
+				let font = self.mapFont(model.font)
+				return HomescreenWidgetAppIntent(id: $0.id, widgetName: $0.name, image: image, font: font)
 			}
+		}
+	}
+	
+	private func mapFont(_ fontString: String) -> Font {
+		switch fontString {
+		case "Montserrat":
+			return .custom("Montserrat-Regular", size: 40)
+		case "Michroma":
+			return .custom("Michroma-Regular", size: 24)
+		case "StickNoBills":
+			return .custom("StickNoBills-Regular", size: 48)
+		case "DotGothic16":
+			return .custom("DotGothic16-Regular", size: 40)
+		case "RalewayDots":
+			return .custom("RalewayDots-Regular", size: 48)
+		case "SFPro":
+			return .system(size: 40)
+		default:
+			return .system(size: 1)
 		}
 	}
 }

@@ -31,8 +31,8 @@ enum WidgetPreviewType {
 
 struct DigitalClockWidgetPreviewModel {
 	let backgroundImage: UIImage?
-	let backgroundColor: UIColor
-	let foregroundColor: UIColor
+	let backgroundColor: Color
+	let foregroundColor: Color
 	let font: ClockWidgetFont
 	
 	enum ClockWidgetFont {
@@ -42,23 +42,6 @@ struct DigitalClockWidgetPreviewModel {
 		case dotGothic16
 		case ralewayDots
 		case SFPro
-		
-		var stringValue: String {
-			switch self {
-			case .montserrat:
-				return "Montserrat"
-			case .michroma:
-				return "Michroma"
-			case .stickNoBills:
-				return "StickNoBills"
-			case .dotGothic16:
-				return "DotGothic16"
-			case .ralewayDots:
-				return "RalewayDots"
-			case .SFPro:
-				return "SFPro"
-			}
-		}
 		
 		var value: Font {
 			switch self {

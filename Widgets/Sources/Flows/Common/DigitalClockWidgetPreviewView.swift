@@ -13,7 +13,7 @@ struct DigitalClockWidgetPreviewView: View {
 	
 	var body: some View {
 		ZStack {
-			Color(uiColor: widgetModel.backgroundColor)
+			Color(widgetModel.backgroundColor)
 			if let image = widgetModel.backgroundImage {
 				Image(uiImage: image)
 					.resizable()
@@ -22,7 +22,7 @@ struct DigitalClockWidgetPreviewView: View {
 				Text(Date(), format: .dateTime.hour().minute())
 					.font(widgetModel.font.value)
 			}
-			.foregroundStyle(Color(uiColor: widgetModel.foregroundColor))
+			.foregroundStyle(widgetModel.foregroundColor)
 		}
 	}
 }
@@ -36,8 +36,8 @@ struct DigitalClockWidgetPreviewView: View {
 			type: .digitalClock(
 				.init(
 					backgroundImage: nil,
-					backgroundColor: .black,
-					foregroundColor: .white,
+					backgroundColor: .purple,
+					foregroundColor: .green,
 					font: .stickNoBills
 				)
 			)

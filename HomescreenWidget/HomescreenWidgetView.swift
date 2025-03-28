@@ -17,8 +17,9 @@ struct StaticWidgetEntryView : View {
 					.resizable()
 			}
 			VStack {
-				Text("Time:")
-				Text(entry.date, format: .dateTime.hour().minute().second())
+				Text(entry.date, format: .dateTime.hour().minute())
+					.font(entry.font)
+					.foregroundStyle(.white)
 			}
 		}
 	}
