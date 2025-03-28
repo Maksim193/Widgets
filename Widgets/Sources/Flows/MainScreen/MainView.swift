@@ -16,10 +16,9 @@ struct MainView: View {
     var body: some View {
         //MARK: Background
         BackgroundView(colors: [
-            .purple.opacity(0.8),
-            .pink.opacity(0.4),
-            .pink.opacity(0.3),
-            .white
+            Color(.backgroundMain),
+            Color(.backgroundMain),
+            Color(.backgroundSecondary)
         ]) {
             ZStack {
                 //MARK: Collection
@@ -44,7 +43,7 @@ struct MainView: View {
                     viewModel.routeCreateWidget()
                 }
                 .navigationDestination(isPresented: $viewModel.isCreateViewOpened) {
-                    EditWidgetView(viewModel: .init())
+                    EditWidgetFlowFactory.make()
                 }
             }
         }

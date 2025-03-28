@@ -21,8 +21,6 @@ struct EditWidgetView: View {
                 WidgetTitle(title: viewModel.widgetTitle)
                     .padding([.top], 24)
                 WidgetsPageView()
-                Text("EditWidgetView.ChangeWidgetTitle")
-                    .font(.headline)
                 EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
                     .padding([.bottom], 32)
                 SaveButton()
@@ -30,6 +28,27 @@ struct EditWidgetView: View {
         }
         .navigationTitle("EditWidgetView.title")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true) // Скрытие стандартной кнопки
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                CustomBackButton()
+            }
+        }
+    }
+}
+
+struct CustomBackButton: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.black)
+            }
+        }
     }
 }
 
