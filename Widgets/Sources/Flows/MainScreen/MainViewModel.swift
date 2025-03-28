@@ -36,59 +36,51 @@ final class MainViewModel: ObservableObject {
 //        isCreateViewOpened = true
 		let digitalClock = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
-			backgroundColor: .black,
-			foregroundColor: .black,
+			backgroundColor: .red,
+			foregroundColor: .purple,
 			font: .SFPro
 		)
 		let widgetModel = WidgetPreviewModel(id: "", name: "SFPro", type: .digitalClock(digitalClock))
 		self.widgetsDataWorker.saveWidget(widgetModel)
 		let digitalClock1 = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
-			backgroundColor: .black,
+			backgroundColor: .green,
 			foregroundColor: .black,
 			font: .dotGothic16
 		)
-		let widgetModel1 = WidgetPreviewModel(id: "", name: "DotGothic16", type: .digitalClock(digitalClock1))
+		let widgetModel1 = WidgetPreviewModel(id: "1", name: "DotGothic16", type: .digitalClock(digitalClock1))
 		self.widgetsDataWorker.saveWidget(widgetModel1)
-		let digitalClock2 = DigitalClockWidgetPreviewModel(
-			backgroundImage: nil,
-			backgroundColor: .black,
-			foregroundColor: .black,
-			font: .dotGothic16
-		)
-		let widgetModel2 = WidgetPreviewModel(id: "", name: "DotGothic16", type: .digitalClock(digitalClock2))
-		self.widgetsDataWorker.saveWidget(widgetModel2)
 		let digitalClock3 = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
-			backgroundColor: .black,
-			foregroundColor: .black,
+			backgroundColor: .pink,
+			foregroundColor: .white,
 			font: .michroma
 		)
-		let widgetModel3 = WidgetPreviewModel(id: "", name: "Michroma", type: .digitalClock(digitalClock3))
+		let widgetModel3 = WidgetPreviewModel(id: "3", name: "Michroma", type: .digitalClock(digitalClock3))
 		self.widgetsDataWorker.saveWidget(widgetModel3)
 		let digitalClock4 = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
-			backgroundColor: .black,
-			foregroundColor: .black,
+			backgroundColor: .brown,
+			foregroundColor: .white,
 			font: .montserrat
 		)
-		let widgetModel4 = WidgetPreviewModel(id: "", name: "Montsertat", type: .digitalClock(digitalClock4))
+		let widgetModel4 = WidgetPreviewModel(id: "4", name: "Montsertat", type: .digitalClock(digitalClock4))
 		self.widgetsDataWorker.saveWidget(widgetModel4)
 		let digitalClock5 = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
-			backgroundColor: .black,
-			foregroundColor: .black,
+			backgroundColor: .cyan,
+			foregroundColor: .blue,
 			font: .ralewayDots
 		)
-		let widgetModel5 = WidgetPreviewModel(id: "", name: "RalewayDots", type: .digitalClock(digitalClock5))
+		let widgetModel5 = WidgetPreviewModel(id: "5", name: "RalewayDots", type: .digitalClock(digitalClock5))
 		self.widgetsDataWorker.saveWidget(widgetModel5)
 		let digitalClock6 = DigitalClockWidgetPreviewModel(
 			backgroundImage: nil,
 			backgroundColor: .black,
-			foregroundColor: .black,
+			foregroundColor: .white,
 			font: .stickNoBills
 		)
-		let widgetModel6 = WidgetPreviewModel(id: "", name: "StickNoBills", type: .digitalClock(digitalClock6))
+		let widgetModel6 = WidgetPreviewModel(id: "6", name: "StickNoBills", type: .digitalClock(digitalClock6))
 		self.widgetsDataWorker.saveWidget(widgetModel6)
     }
     

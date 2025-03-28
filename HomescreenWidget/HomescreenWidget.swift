@@ -19,7 +19,6 @@ struct HomescreenWidget: Widget {
 			provider: HomescreenWidgetProvider()
 		) { entry in
 			StaticWidgetEntryView(entry: entry)
-				.containerBackground(.black, for: .widget)
 		}
 		.configurationDisplayName("MyWidget")
 	}
@@ -28,5 +27,5 @@ struct HomescreenWidget: Widget {
 #Preview(as: .systemSmall) {
 	HomescreenWidget()
 } timeline: {
-	HomescreenWidgetEntry(date: .now, color: "purple", image: nil, font: .custom("DotGothic16-Regular", size: 48))
+	HomescreenWidgetEntry(date: .now, backgroundColor: .black, foregroundColor: .red, image: nil, font: .custom("DotGothic16-Regular", size: 48))
 }

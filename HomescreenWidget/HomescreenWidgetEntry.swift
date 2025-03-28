@@ -10,7 +10,8 @@ import WidgetKit
 
 struct HomescreenWidgetEntry: TimelineEntry {
 	let date: Date
-	let color: String?
+	let backgroundColor: Color
+	let foregroundColor: Color
 	let image: UIImage?
 	let font: Font?
 }

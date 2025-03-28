@@ -19,8 +19,9 @@ struct StaticWidgetEntryView : View {
 			VStack {
 				Text(entry.date, format: .dateTime.hour().minute())
 					.font(entry.font)
-					.foregroundStyle(.white)
+					.foregroundStyle(entry.foregroundColor)
 			}
 		}
+		.containerBackground(entry.backgroundColor, for: .widget)
 	}
 }

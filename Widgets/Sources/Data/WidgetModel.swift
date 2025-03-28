@@ -15,10 +15,11 @@ class WidgetModel {
 	var type: WidgetType
 	
 	init(
+		id: String,
 		name: String,
 		type: WidgetType
 	) {
-		self.id = UUID().uuidString
+		self.id = id
 		self.name = name
 		self.type = type
 	}
@@ -31,5 +32,7 @@ enum WidgetType: Codable {
 
 struct DigitalClockWidgetModel: Codable {
 	let backgroundImage: Data
+	let backgroundColorHEX: UInt
+	let foregroundColorHEX: UInt
 	let font: String
 }

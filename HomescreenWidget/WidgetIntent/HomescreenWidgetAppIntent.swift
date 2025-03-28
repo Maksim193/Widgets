@@ -13,6 +13,8 @@ struct HomescreenWidgetAppIntent: AppEntity {
 	var id: String
 	var widgetName: String
 	var image: UIImage?
+	var backgroundColor: Color
+	var foregroundColor: Color
 	var font: Font
 	
 	static var typeDisplayRepresentation: TypeDisplayRepresentation = "TypeDisplayRepresentation"
@@ -48,7 +50,16 @@ struct HomescreenWidgetQuery: EntityQuery {
 			case .digitalClock(let model):
 				let image = UIImage(data: model.backgroundImage)
 				let font = self.mapFont(model.font)
-				return HomescreenWidgetAppIntent(id: $0.id, widgetName: $0.name, image: image, font: font)
+				let backgroundColor = Color(hex: model.backgroundColorHEX)
+				let foregroundColor = Color(hex: model.foregroundColorHEX)
+				return HomescreenWidgetAppIntent(
+					id: $0.id,
+					widgetName: $0.name,
+					image: image,
+					backgroundColor: backgroundColor,
+					foregroundColor: foregroundColor,
+					font: font
+				)
 			}
 		}
 	}

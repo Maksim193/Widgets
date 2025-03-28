@@ -13,8 +13,13 @@ struct HomescreenWidgetProvider: AppIntentTimelineProvider {
 	typealias ConfigurationIntent = HomescreenWidgetConfigurationIntent
 	
 	func snapshot(for configuration: ConfigurationIntent, in context: Context) async -> Entry {
-		let color = configuration.widget?.widgetName
-		let entry = Entry(date: Date(), color: color, image: configuration.widget?.image, font: configuration.widget?.font)
+		let entry = Entry(
+			date: Date(),
+			backgroundColor: configuration.widget?.backgroundColor ?? .black,
+			foregroundColor: configuration.widget?.foregroundColor ?? .white,
+			image: configuration.widget?.image,
+			font: configuration.widget?.font
+		)
 		return entry
 	}
 	
@@ -29,12 +34,23 @@ struct HomescreenWidgetProvider: AppIntentTimelineProvider {
 //		}
 //		return Timeline(entries: entries, policy: .atEnd)
 		let nextUpdate: Date = .now.addingTimeInterval(60)
-		let color = configuration.widget?.widgetName
-		let entry = Entry(date: Date(), color: color, image: configuration.widget?.image, font: configuration.widget?.font)
+		let entry = Entry(
+			date: Date(),
+			backgroundColor: configuration.widget?.backgroundColor ?? .black,
+			foregroundColor: configuration.widget?.foregroundColor ?? .white,
+			image: configuration.widget?.image,
+			font: configuration.widget?.font
+		)
 		return Timeline(entries: [entry], policy: .after(nextUpdate))
 	}
 	
 	func placeholder(in context: Context) -> Entry {
-		Entry(date: Date(), color: nil, image: nil, font: .system(size: 40))
+		Entry(
+			date: Date(),
+			backgroundColor: .black,
+			foregroundColor: .white,
+			image: nil,
+			font: .system(size: 40)
+		)
 	}
 }

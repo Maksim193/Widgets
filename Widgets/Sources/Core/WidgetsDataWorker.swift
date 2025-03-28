@@ -5,7 +5,7 @@
 //  Created by Максим Косников on 27.03.2025.
 //
 
-import UIKit
+import SwiftUI
 
 protocol WidgetsDataWorkerProtocol {
 	func getWidgetsPreviewData() -> [WidgetPreviewModel]
@@ -38,6 +38,7 @@ extension WidgetsDataWorker: WidgetsDataWorkerProtocol {
 	
 	func saveWidget(_ widget: WidgetPreviewModel) {
 		let widgetModel = WidgetModel(
+			id: widget.id,
 			name: widget.name,
 			type: self.mapWidgetType(widget.type)
 		)
@@ -63,11 +64,12 @@ extension WidgetsDataWorker {
 	) -> DigitalClockWidgetPreviewModel {
 		let backgroundImage = UIImage(data: model.backgroundImage)
 		let font = self.mapDigitalClockPreviewFont(model.font)
-		
+		let backgroundColor = Color(hex: model.backgroundColorHEX)
+		let foregroundColor = Color(hex: model.foregroundColorHEX)
 		return DigitalClockWidgetPreviewModel(
 			backgroundImage: backgroundImage,
-			backgroundColor: .black,
-			foregroundColor: .white,
+			backgroundColor: backgroundColor,
+			foregroundColor: foregroundColor,
 			font: font
 		)
 	}
@@ -99,8 +101,12 @@ extension WidgetsDataWorker {
 		case .digitalClock(let digitalClockPreviewModel):
 			let backgroundImageData = digitalClockPreviewModel.backgroundImage?.jpegData(compressionQuality: 1) ?? Data()
 			let font = self.mapDigitalClockFont(digitalClockPreviewModel.font)
+			let backgroundColorHEX = digitalClockPreviewModel.backgroundColor.toHEX()
+			let foregroundColorHEX = digitalClockPreviewModel.foregroundColor.toHEX()
 			let digitalClockModel = DigitalClockWidgetModel(
 				backgroundImage: backgroundImageData,
+				backgroundColorHEX: backgroundColorHEX,
+				foregroundColorHEX: foregroundColorHEX,
 				font: font
 			)
 			return .digitalClock(digitalClockModel)
