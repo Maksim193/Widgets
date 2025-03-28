@@ -18,7 +18,7 @@ struct EditWidgetView: View {
             Color(.backgroundSecondary)
         ]) {
             VStack {
-                WidgetTitle(title: viewModel.widgetTitle)
+                WidgetTitle(title: $viewModel.widgetTitle)
                     .padding([.top], 24)
                 WidgetsPageView()
                 EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)

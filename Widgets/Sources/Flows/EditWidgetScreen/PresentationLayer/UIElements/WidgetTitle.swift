@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct WidgetTitle: View {
-	var title: String
-	
-	var body: some View {
-		HStack {
-			Text(title)
-			Image(systemName: "square.and.pencil")
-		}
-		.font(.title3)
-		.background(alignment: .center) {
-			Color(.lightGray)
-				.cornerRadius(16)
-				.padding(-10)
-				.opacity(0.2)
-		}
-	}
+    @Binding var title: String
+    
+    var body: some View {
+        TextField("Widget title", text: $title)
+            .font(.system(size: 17, weight: .regular))
+            .padding(14)
+            .background(Material.ultraThin.opacity(0.5))
+            .cornerRadius(10)
+            .padding(.horizontal, 16)
+    }
+}
+
+#Preview {
+    NavigationStack {
+        EditWidgetView(viewModel: EditWidgetViewModel())
+    }
 }
