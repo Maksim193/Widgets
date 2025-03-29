@@ -11,44 +11,39 @@ struct EditWidgetView: View {
     @StateObject var viewModel: EditWidgetViewModel
     
     var body: some View {
-        
         BackgroundView(colors: [
-            Color(.backgroundMain),
-            Color(.backgroundMain),
+            Color(.mainApp),
+            Color(.mainApp),
             Color(.backgroundSecondary)
         ]) {
             VStack {
                 WidgetTitle(title: $viewModel.widgetTitle)
-                    .padding([.top], 24)
+                    .padding(.top, 32)
                 WidgetsPageView()
-                EditWidgetButtons(editWidgetButtonsModel: viewModel.editWidgetButtons)
-                    .padding([.bottom], 32)
-                SaveButton()
+                EditWidgetButtonsPanelView {
+                    viewModel.openTypeBottomSheet()
+                } backgroundAction: {
+                    viewModel.openBackgroundBottomSheet()
+                } styleAction: {
+                    viewModel.openStyleBottomSheet()
+                }
+
+                SaveButton {
+                    viewModel.saveWidget()
+                }
+                .padding(.bottom, 16)
             }
         }
         .navigationTitle("EditWidgetView.title")
+        .toolbarBackground(.blue, for: .navigationBar) // Размытие
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true) // Скрытие стандартной кнопки
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 CustomBackButton()
             }
         }
-    }
-}
-
-struct CustomBackButton: View {
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        Button(action: {
-            presentationMode.wrappedValue.dismiss()
-        }) {
-            HStack {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.black)
-            }
-        }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
@@ -56,4 +51,5 @@ struct CustomBackButton: View {
     NavigationStack {
         EditWidgetView(viewModel: EditWidgetViewModel())
     }
+    
 }

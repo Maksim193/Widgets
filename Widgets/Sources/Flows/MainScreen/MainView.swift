@@ -16,8 +16,8 @@ struct MainView: View {
     var body: some View {
         //MARK: Background
         BackgroundView(colors: [
-            Color(.backgroundMain),
-            Color(.backgroundMain),
+            Color(.mainApp),
+            Color(.mainApp),
             Color(.backgroundSecondary)
         ]) {
             ZStack {
