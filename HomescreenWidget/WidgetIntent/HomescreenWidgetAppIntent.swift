@@ -9,13 +9,23 @@ import AppIntents
 import SwiftData
 import SwiftUI
 
+enum WidgetAppIntentType {
+	case example
+	case digitalClock(DigitalClock)
+	
+	struct DigitalClock {
+		var image: UIImage?
+		var backgroundColor: Color
+		var foregroundColor: Color
+		var font: Font
+	}
+}
+
 struct HomescreenWidgetAppIntent: AppEntity {
+	
 	var id: String
 	var widgetName: String
-	var image: UIImage?
-	var backgroundColor: Color
-	var foregroundColor: Color
-	var font: Font
+	var widgetType: WidgetAppIntentType
 	
 	static var typeDisplayRepresentation: TypeDisplayRepresentation = "TypeDisplayRepresentation"
 	static var defaultQuery = HomescreenWidgetQuery()
@@ -52,13 +62,16 @@ struct HomescreenWidgetQuery: EntityQuery {
 				let font = self.mapFont(model.font)
 				let backgroundColor = Color(hex: model.backgroundColorHEX)
 				let foregroundColor = Color(hex: model.foregroundColorHEX)
-				return HomescreenWidgetAppIntent(
-					id: $0.id,
-					widgetName: $0.name,
+				let digitalClockIntent = WidgetAppIntentType.DigitalClock(
 					image: image,
 					backgroundColor: backgroundColor,
 					foregroundColor: foregroundColor,
 					font: font
+				)
+				return HomescreenWidgetAppIntent(
+					id: $0.id,
+					widgetName: $0.name,
+					widgetType: .digitalClock(digitalClockIntent)
 				)
 			}
 		}

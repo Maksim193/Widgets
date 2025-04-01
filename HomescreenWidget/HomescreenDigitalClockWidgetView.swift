@@ -1,5 +1,5 @@
 //
-//  HomescreenWidgetView.swift
+//  HomescreenDigitalClockWidgetView.swift
 //  WidgetExtension
 //
 //  Created by Максим Косников on 10.02.2025.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct StaticWidgetEntryView : View {
-	var entry: HomescreenWidgetProvider.Entry
+struct HomescreenDigitalClockWidgetView : View {
+	var entry: DigitalClockWidgetEntry
 
 	var body: some View {
 		ZStack {

@@ -19,7 +19,6 @@ extension Color {
 	}
 	
 	func toHEX() -> UInt {
-		print(UIColor(self).cgColor.components)
 		guard let components = UIColor(self).cgColor.components,
 			  components.count >= 3 else { return .zero }
 		

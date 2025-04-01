@@ -9,6 +9,16 @@ import SwiftUI
 import WidgetKit
 
 struct HomescreenWidgetEntry: TimelineEntry {
+	var date: Date
+	let type: EntryType
+	
+	enum EntryType {
+		case example
+		case digitalClock(DigitalClockWidgetEntry)
+	}
+}
+
+struct DigitalClockWidgetEntry {
 	let date: Date
 	let backgroundColor: Color
 	let foregroundColor: Color
