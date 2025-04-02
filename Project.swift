@@ -83,12 +83,6 @@ let widgetEntitlements = Entitlements.dictionary(
 	]
 )
 
-let widgetExtensionEntitlements = Entitlements.dictionary(
-	[
-		"com.apple.security.application-groups": ["group.ru.maksim.widgets"]
-	]
-)
-
 let widgetFramework = Target.target(
 	name: "WidgetFramework",
 	destinations: .iOS,
@@ -112,12 +106,16 @@ let widgetExtension = Target.target(
 	product: .appExtension,
 	bundleId: "ru.maksim.widgets.widgetExtension",
 	infoPlist: widgetInfoPlist,
-	sources: ["HomescreenWidget/**"],
+	sources: [
+		"HomescreenWidget/**",
+		"Widgets/Sources/Data/WidgetModel.swift",
+		"Widgets/Sources/Extensions/**"
+	],
 	resources: ["HomescreenWidget/Resources/**"],
-	entitlements: widgetExtensionEntitlements,
+	entitlements: widgetEntitlements,
 	dependencies: [
 		.target(name: "Bundle"),
-		.target(name: "WidgetFramework"),
+		.target(name: "WidgetFramework")
 	]
 )
 

@@ -22,7 +22,6 @@ enum WidgetAppIntentType {
 }
 
 struct HomescreenWidgetAppIntent: AppEntity {
-	
 	var id: String
 	var widgetName: String
 	var widgetType: WidgetAppIntentType
