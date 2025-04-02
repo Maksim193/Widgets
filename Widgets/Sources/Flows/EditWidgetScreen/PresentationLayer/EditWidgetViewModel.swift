@@ -10,15 +10,15 @@ import SwiftUICore
 
 final class EditWidgetViewModel: ObservableObject {
     //MARK: Publishers
-	@Published var widgetTitle: String = "Имя виджета"
+    @Published var widgetTitle: String = "Имя виджета"
     @Published var widgetType: String = "Тип виджета"
     @Published var widgetBackground: Color = .black
     @Published var widgetStyle: String = "Описание виджета"
     
-	
-    /// Если создаём экран нового виджета, то не используем 
-    func setWidget() {
     
+    /// Если создаём экран нового виджета, то не используем
+    func setWidget() {
+        
     }
     
     //MARK: Methods for view

@@ -27,7 +27,6 @@ struct EditWidgetView: View {
                 } styleAction: {
                     viewModel.openStyleBottomSheet()
                 }
-
                 SaveButton {
                     viewModel.saveWidget()
                 }
@@ -35,7 +34,7 @@ struct EditWidgetView: View {
             }
         }
         .navigationTitle("EditWidgetView.title")
-        .toolbarBackground(.blue, for: .navigationBar) // Размытие
+        .toolbarBackground(.blue, for: .navigationBar)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
