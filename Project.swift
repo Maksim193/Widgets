@@ -97,7 +97,7 @@ let bundle = Target.target(
 	destinations: .iOS,
 	product: .bundle,
 	bundleId: "io.tuist.App.Bundle",
-	resources: "Bundle/**"
+	resources: "HomescreenWidget/Resources/**"
 )
 
 let widgetExtension = Target.target(

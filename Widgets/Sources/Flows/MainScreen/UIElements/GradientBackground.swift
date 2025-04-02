@@ -10,8 +10,8 @@ import SwiftUI
 struct GradientBackground: View {
     @State var gradient: Gradient = Gradient(
         colors: [
-            Color(.backgroundMain),
-            Color(.backgroundMain),
+			Color(.mainApp),
+            Color(.mainApp),
             
         ]
     )
