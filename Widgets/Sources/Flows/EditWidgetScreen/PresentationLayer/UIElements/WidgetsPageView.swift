@@ -13,12 +13,18 @@ struct WidgetsPageView: View {
 			WidgetView(type: .small, widgetModel: .init(id: "", name: "", type: .example))
 			WidgetView(type: .medium, widgetModel: .init(id: "", name: "", type: .example))
 			WidgetView(type: .large, widgetModel: .init(id: "", name: "", type: .example))
+                .padding(.bottom, 20)
 		}
-		.tabViewStyle(.page)
-		.indexViewStyle(.page(backgroundDisplayMode: .always))
+        .tabViewStyle(.page(indexDisplayMode: .always))
+        .onAppear {
+            UIPageControl.appearance().currentPageIndicatorTintColor = .black
+            UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.3)
+        }
 	}
 }
 
 #Preview {
-	EditWidgetView(viewModel: EditWidgetViewModel())
+    NavigationStack {
+        EditWidgetView(viewModel: EditWidgetViewModel())
+    }
 }

@@ -1,41 +1,41 @@
 {
   "sourceLanguage" : "ru",
   "strings" : {
-    "EditWidgetView.changeButton.color" : {
-      "extractionState" : "manual",
+    "EditWidgetButtonTitle.Background" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Color"
+            "state" : "translated",
+            "value" : "Background"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цвет"
+            "value" : "Фон"
           }
         }
       }
     },
-    "EditWidgetView.changeButton.image" : {
+    "EditWidgetButtonTitle.Style" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Image"
+            "value" : "Style"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Фото"
+            "value" : "Стиль"
           }
         }
       }
     },
-    "EditWidgetView.changeButton.type" : {
+    "EditWidgetButtonTitle.Type" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -48,22 +48,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тип"
-          }
-        }
-      }
-    },
-    "EditWidgetView.ChangeWidgetTitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Change widget"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изменить виджет"
           }
         }
       }
@@ -96,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Редактирование виджета"
+            "value" : "Редактор"
           }
         }
       }

@@ -11,38 +11,40 @@ import SwiftData
 struct MainView: View {
     /// viewModel типа MainViewModel
     @StateObject var viewModel: MainViewModel
-	
-    
+
     //MARK: body
     var body: some View {
-        ZStack {
-            //MARK: Background
-            GradientBackground()
-                .ignoresSafeArea(.all)
-            
-            //MARK: Collection
-            ScrollView {
-                LazyVStack(spacing: 15) {
-					ForEach(viewModel.previewWidgets) { widgetModel in
-                        WidgetRowView(widgetModel: widgetModel)
-                            .onTapGesture {
-                                viewModel.routeEditWidget()
-                            }
+        //MARK: Background
+        BackgroundView(colors: [
+            Color(.mainApp),
+            Color(.mainApp),
+            Color(.backgroundSecondary)
+        ]) {
+            ZStack {
+                //MARK: Collection
+                ScrollView {
+                    LazyVStack(spacing: 15) {
+                        ForEach(viewModel.previewWidgets) { widgetModel in
+                            WidgetRowView(widgetModel: widgetModel)
+                                .onTapGesture {
+                                    viewModel.routeEditWidget()
+                                }
+                        }
                     }
+                    .padding(.top, 95)
                 }
-                .padding(.top, 95)
-            }
-            .scrollIndicators(.hidden)
-            .navigationDestination(isPresented: $viewModel.isEditViewOpened) {
-                EditWidgetView(viewModel: .init())
-            }
+                .scrollIndicators(.hidden)
+                .navigationDestination(isPresented: $viewModel.isEditViewOpened) {
+                    EditWidgetView(viewModel: .init())
+                }
                 
-            //MARK: Header
-            HeaderView {
-                viewModel.routeCreateWidget()
-            }
-            .navigationDestination(isPresented: $viewModel.isCreateViewOpened) {
-                EditWidgetView(viewModel: .init())
+                //MARK: Header
+                HeaderView {
+                    viewModel.routeCreateWidget()
+                }
+                .navigationDestination(isPresented: $viewModel.isCreateViewOpened) {
+                    EditWidgetFlowFactory.make()
+                }
             }
         }
     }

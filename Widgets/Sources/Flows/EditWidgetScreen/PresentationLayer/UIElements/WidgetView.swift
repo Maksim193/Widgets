@@ -35,7 +35,7 @@ struct WidgetView: View {
 		HStack {
 			switch widgetModel.type {
 			case .example:
-				Color(.gray)
+                Color(.black)
 			case .digitalClock(let digitalClockModel):
 				DigitalClockWidgetPreviewView(widgetModel: digitalClockModel)
 			}
