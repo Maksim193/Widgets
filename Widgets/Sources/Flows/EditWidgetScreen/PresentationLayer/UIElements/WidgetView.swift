@@ -44,20 +44,3 @@ struct WidgetView: View {
 		.cornerRadius(20)
 	}
 }
-
-struct DigitalClockWidgetPreviewView: View {
-	let widgetModel: DigitalClockWidgetPreviewModel
-	
-	var body: some View {
-		ZStack {
-			if let image = widgetModel.backgroundImage {
-				Image(uiImage: image)
-					.resizable()
-			}
-			VStack {
-				Text("Time:")
-				Text(Date(), format: .dateTime.hour().minute().second())
-			}
-		}
-	}
-}

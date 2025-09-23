@@ -49,7 +49,15 @@ let infoPlist: InfoPlist = .extendingDefault(with: [
 		"UIInterfaceOrientationPortraitUpsideDown"
 	],
 	"LSApplicationQueriesSchemes": ["tg"],
-	"CFBundleDisplayName": "\(appName)"
+	"CFBundleDisplayName": "\(appName)",
+	"UIAppFonts": [
+		"Audiowide-Regular.ttf",
+		"DotGothic16-Regular.ttf",
+		"Michroma-Regular.ttf",
+		"RalewayDots-Regular.ttf",
+		"StickNoBills-Regular.ttf",
+		"Montserrat-Regular.ttf",
+	]
 ])
 
 let widgetInfoPlist: InfoPlist = .extendingDefault(with: [
@@ -58,16 +66,18 @@ let widgetInfoPlist: InfoPlist = .extendingDefault(with: [
 	"CFBundleDisplayName": "$(PRODUCT_NAME)",
 	"NSExtension": [
 		"NSExtensionPointIdentifier": "com.apple.widgetkit-extension",
+	],
+	"UIAppFonts": [
+		"Audiowide-Regular.ttf",
+		"DotGothic16-Regular.ttf",
+		"Michroma-Regular.ttf",
+		"RalewayDots-Regular.ttf",
+		"StickNoBills-Regular.ttf",
+		"Montserrat-Regular.ttf",
 	]
 ])
 
 let widgetEntitlements = Entitlements.dictionary(
-	[
-		"com.apple.security.application-groups": ["group.ru.maksim.widgets"]
-	]
-)
-
-let widgetExtensionEntitlements = Entitlements.dictionary(
 	[
 		"com.apple.security.application-groups": ["group.ru.maksim.widgets"]
 	]
@@ -96,12 +106,16 @@ let widgetExtension = Target.target(
 	product: .appExtension,
 	bundleId: "ru.maksim.widgets.widgetExtension",
 	infoPlist: widgetInfoPlist,
-	sources: ["HomescreenWidget/**"],
+	sources: [
+		"HomescreenWidget/**",
+		"Widgets/Sources/Data/WidgetModel.swift",
+		"Widgets/Sources/Extensions/**"
+	],
 	resources: ["HomescreenWidget/Resources/**"],
-	entitlements: widgetExtensionEntitlements,
+	entitlements: widgetEntitlements,
 	dependencies: [
 		.target(name: "Bundle"),
-		.target(name: "WidgetFramework"),
+		.target(name: "WidgetFramework")
 	]
 )
 

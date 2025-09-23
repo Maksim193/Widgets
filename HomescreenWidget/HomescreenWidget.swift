@@ -18,8 +18,15 @@ struct HomescreenWidget: Widget {
 			intent: HomescreenWidgetConfigurationIntent.self,
 			provider: HomescreenWidgetProvider()
 		) { entry in
-			StaticWidgetEntryView(entry: entry)
-				.containerBackground(.green, for: .widget)
+			switch entry.type {
+			case .example:
+				VStack {
+					Text("Example")
+				}
+				.containerBackground(.white, for: .widget)
+			case .digitalClock(let entry):
+				HomescreenDigitalClockWidgetView(entry: entry)
+			}
 		}
 		.configurationDisplayName("MyWidget")
 	}
@@ -28,5 +35,16 @@ struct HomescreenWidget: Widget {
 #Preview(as: .systemSmall) {
 	HomescreenWidget()
 } timeline: {
-	HomescreenWidgetEntry(date: .now, color: "purple", image: nil)
+	HomescreenWidgetEntry(
+		date: .now,
+		type: .digitalClock(
+			DigitalClockWidgetEntry(
+				date: .now,
+				backgroundColor: .black,
+				foregroundColor: .red,
+				image: nil,
+				font: .custom("DotGothic16-Regular", size: 48)
+			)
+		)
+	)
 }
